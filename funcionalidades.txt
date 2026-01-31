@@ -1,0 +1,35 @@
+Funcionalidades To-Do-App
+
+Utilizadores
+
+-login
+-logout
+-criar conta
+-editar conta(foto etc, etc)
+-cada utilizador deve ter uma tag unica para identificar cada um
+
+Projetos
+
+-Criar projeto
+-Editar projeto
+-Eliminar projeto
+-Visão geral das tarefas e navegação pelo projeto
+-Enviar convites para membros
+-Atribuir permissões a outros membros
+-visualização dos participantes do projeto
+-Criador do projeto pode remover participantes, atribuir permissoes, eliminar projeto
+
+Tarefas
+
+-Criar Tarefa
+-Subtarefas
+-Estados
+-prioridades e datas limite
+-comentários
+-Drag and drop no Kanban
+-FIltros de pesquisa
+
+Convites
+
+-Visualização de convites
+-Aceitar/recusar convites
