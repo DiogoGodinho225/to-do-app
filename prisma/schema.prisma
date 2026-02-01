@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../app/generated/prisma"
@@ -11,4 +5,155 @@ generator client {
 
 datasource db {
   provider = "mysql"
+}
+
+model invites {
+  id                                  Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  project_id                          Int
+  invitedUser_id                      Int
+  invitedBy_id                        Int
+  status                              Int
+  description                         String?  @db.Text
+  accepted_at                         DateTime @db.DateTime(0)
+  created_at                          DateTime @default(now()) @db.DateTime(0)
+  updated_at                          DateTime @default(now()) @db.DateTime(0)
+  projects                            projects @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_invites_projects1")
+  users_invites_invitedUser_idTousers users    @relation("invites_invitedUser_idTousers", fields: [invitedUser_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_invites_users1")
+  users_invites_invitedBy_idTousers   users    @relation("invites_invitedBy_idTousers", fields: [invitedBy_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_invites_users2")
+
+  @@index([project_id], map: "fk_invites_projects1_idx")
+  @@index([invitedUser_id], map: "fk_invites_users1_idx")
+  @@index([invitedBy_id], map: "fk_invites_users2_idx")
+}
+
+model member_permissions {
+  project_id    Int
+  user_id       Int
+  permission_id Int
+  permissions   permissions @relation(fields: [permission_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_member_permissions_permissions1")
+  projects      projects    @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_member_permissions_projects1")
+  users         users       @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_member_permissions_users1")
+
+  @@id([project_id, user_id, permission_id])
+  @@index([permission_id], map: "fk_member_permissions_permissions1_idx")
+  @@index([user_id], map: "fk_member_permissions_users1_idx")
+}
+
+model permissions {
+  id                 Int                  @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  key                String               @db.VarChar(45)
+  created_at         DateTime             @default(now()) @db.DateTime(0)
+  updated_at         DateTime             @default(now()) @db.DateTime(0)
+  member_permissions member_permissions[]
+}
+
+model priority_status {
+  id         Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  status     String   @db.VarChar(45)
+  created_at DateTime @default(now()) @db.DateTime(0)
+  updated_at DateTime @default(now()) @db.DateTime(0)
+  tasks      tasks[]
+}
+
+model project_members {
+  project_id Int
+  user_id    Int
+  role_id    Int
+  joined_at  DateTime @default(now()) @db.DateTime(0)
+  updated_at DateTime @default(now()) @db.DateTime(0)
+  projects   projects @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_members_projects1")
+  roles      roles    @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_members_roles1")
+  users      users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_members_users1")
+
+  @@id([project_id, user_id])
+  @@index([role_id], map: "fk_project_members_roles1_idx")
+  @@index([user_id], map: "fk_project_members_users1_idx")
+}
+
+model projects {
+  id                 Int                  @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  owner_id           Int
+  description        String?              @db.Text
+  created_at         DateTime             @default(now()) @db.DateTime(0)
+  updated_at         DateTime             @default(now()) @db.DateTime(0)
+  invites            invites[]
+  member_permissions member_permissions[]
+  project_members    project_members[]
+  users              users                @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_projects_users")
+  tasks              tasks[]
+
+  @@index([owner_id], map: "fk_projects_users_idx")
+}
+
+model roles {
+  id              Int               @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  role            String            @db.VarChar(45)
+  created_at      DateTime          @default(now()) @db.DateTime(0)
+  updated_at      DateTime          @default(now()) @db.DateTime(0)
+  project_members project_members[]
+}
+
+model status {
+  id         Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  status     String   @db.VarChar(45)
+  created_at DateTime @default(now()) @db.DateTime(0)
+  updated_at DateTime @default(now()) @db.DateTime(0)
+  tasks      tasks[]
+}
+
+model subtasks {
+  id                            Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  task_id                       Int
+  title                         String   @db.VarChar(65)
+  description                   String?  @db.Text
+  status                        Int
+  created_at                    DateTime @default(now()) @db.DateTime(0)
+  updated_at                    DateTime @default(now()) @db.DateTime(0)
+  tasks_subtasks_task_idTotasks tasks    @relation("subtasks_task_idTotasks", fields: [task_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subtasks_tasks1")
+  tasks_subtasks_idTotasks      tasks    @relation("subtasks_idTotasks", fields: [id], references: [status_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subtasks_tasks2")
+
+  @@index([task_id], map: "fk_subtasks_tasks1_idx")
+}
+
+model tasks {
+  id                               Int             @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  user_id                          Int
+  status_id                        Int
+  priority_id                      Int
+  project_id                       Int
+  title                            String          @db.VarChar(100)
+  description                      String          @db.Text
+  dueDate                          DateTime?       @db.DateTime(0)
+  created_at                       DateTime        @default(now()) @db.DateTime(0)
+  updated_at                       DateTime        @default(now()) @db.DateTime(0)
+  subtasks_subtasks_task_idTotasks subtasks[]      @relation("subtasks_task_idTotasks")
+  subtasks_subtasks_idTotasks      subtasks?       @relation("subtasks_idTotasks")
+  priority_status                  priority_status @relation(fields: [priority_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tasks_priority_status1")
+  projects                         projects        @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tasks_projects1")
+  status                           status          @relation(fields: [status_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tasks_status1")
+  users                            users           @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tasks_users1")
+
+  @@index([priority_id], map: "fk_tasks_priority_status1_idx")
+  @@index([project_id], map: "fk_tasks_projects1_idx")
+  @@index([status_id], map: "fk_tasks_status1_idx")
+  @@index([user_id], map: "fk_tasks_users1_idx")
+}
+
+model users {
+  id                                    Int                  @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  first_name                            String               @db.VarChar(45)
+  last_name                             String               @db.VarChar(45)
+  email                                 String               @unique(map: "email_UNIQUE") @db.VarChar(65)
+  password_hash                         String               @unique(map: "password_hash_UNIQUE") @db.VarChar(45)
+  tag                                   String               @unique(map: "tag_UNIQUE") @db.VarChar(45)
+  last_login                            DateTime             @db.DateTime(0)
+  image_url                             String?              @db.VarChar(45)
+  created_at                            DateTime             @default(now()) @db.DateTime(0)
+  updated_at                            DateTime             @default(now()) @db.DateTime(0)
+  invites_invites_invitedUser_idTousers invites[]            @relation("invites_invitedUser_idTousers")
+  invites_invites_invitedBy_idTousers   invites[]            @relation("invites_invitedBy_idTousers")
+  member_permissions                    member_permissions[]
+  project_members                       project_members[]
+  projects                              projects[]
+  tasks                                 tasks[]
 }
