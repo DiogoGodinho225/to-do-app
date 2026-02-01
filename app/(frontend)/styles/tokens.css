@@ -1,0 +1,19 @@
+:root{
+    --color-primary: '#3B82F6';
+    --hover-primary: '#2563EB';
+
+    --color-secondary: '#8B5CF6';
+    --hover-secondary: '#7C3AED';
+
+    --accent-color: '#22D3EE';
+    --success-color: '#4ADE80';
+    --error-color: '#F43F5E';
+
+    --background-color: '#F9FAFB';
+    --surface-color: '#FFFFFF';
+    --border: '#E5E7EB';
+
+    --principal-text: '#0F172A';
+    --secondary-text: '#64748B';
+    --button-text: '#FFFFFF';
+}

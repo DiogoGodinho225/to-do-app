@@ -1,3 +1,5 @@
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
 
-redirect("/projects/index");
+export default function Page() {
+  redirect('/(frontend)/(auth)/signin');
+}
