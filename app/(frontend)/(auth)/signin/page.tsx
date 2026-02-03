@@ -1,6 +1,10 @@
 'use client';
 
-const SignInPage = () => {
+interface SignInPageProps {
+    handleAuthPage: () => void;
+}
+
+const SignInPage = ({handleAuthPage}: SignInPageProps) => {
     return (
         <div className="signin-container">
             <h2>Login</h2>
@@ -17,6 +21,7 @@ const SignInPage = () => {
 
                 <button type="submit">Login</button>
             </form>
+            <p>Ainda não tem conta? <a href='#' onClick={handleAuthPage}>Registe-se!</a></p>
         </div>
     )
 
