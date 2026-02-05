@@ -2,11 +2,12 @@ Funcionalidades To-Do-App
 
 Utilizadores
 
--login
+-login (feito)
 -logout
--criar conta
+-criar conta (feito)
 -editar conta(foto etc, etc)
--cada utilizador deve ter uma tag unica para identificar cada um
+-cada utilizador deve ter uma tag unica para identificar cada um (feito)
+-estado online para o user
 
 Projetos
 
@@ -33,3 +34,5 @@ Convites
 
 -Visualização de convites
 -Aceitar/recusar convites
+
+
