@@ -3,3 +3,11 @@
     padding: 0;
     margin: 0;
 }
+
+.main-layout{
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    padding-left: 70px;
+    background-color: var(--background-color);
+}

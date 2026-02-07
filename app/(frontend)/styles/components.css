@@ -1,0 +1,124 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #3B82F6, #4F46E5 50%, #8B5CF6);
+    min-height: 100vh;
+    width: 70px;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+
+nav h1 a{
+    text-decoration: none;
+    color: white!important;
+}
+
+nav:hover {
+    width: 220px;
+}
+
+nav .user{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+}
+
+nav .user span {
+    width: 100%;
+    color: white;
+    font-weight: 500;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.3s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+nav:hover .user span {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+nav .user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+
+nav h1 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    white-space: nowrap;
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+nav:hover h1 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.2s ease-in-out;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+nav .icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+nav .label {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+nav:hover .label {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
