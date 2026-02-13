@@ -31,6 +31,7 @@ model users {
 model projects {
   id          Int      @id @default(autoincrement())
   owner_id    Int
+  title       String  @db.VarChar(60)
   description String?
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())

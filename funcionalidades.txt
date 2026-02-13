@@ -3,15 +3,15 @@ Funcionalidades To-Do-App
 Utilizadores
 
 -login (feito)
--logout
+-logout (feito) 
 -criar conta (feito)
 -editar conta(foto etc, etc)
 -cada utilizador deve ter uma tag unica para identificar cada um (feito)
--estado online para o user
+-estado online para o user (feito)
 
 Projetos
 
--Criar projeto
+-Criar projeto (feito)
 -Editar projeto
 -Eliminar projeto
 -Visão geral das tarefas e navegação pelo projeto
