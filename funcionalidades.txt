@@ -5,7 +5,7 @@ Utilizadores
 -login (feito)
 -logout (feito) 
 -criar conta (feito)
--editar conta(foto etc, etc)
+-editar conta(foto etc, etc) (feito)
 -cada utilizador deve ter uma tag unica para identificar cada um (feito)
 -estado online para o user (feito)
 
@@ -13,7 +13,7 @@ Projetos
 
 -Criar projeto (feito)
 -Editar projeto
--Eliminar projeto
+-Eliminar projeto (feito)
 -Visão geral das tarefas e navegação pelo projeto
 -Enviar convites para membros
 -Atribuir permissões a outros membros

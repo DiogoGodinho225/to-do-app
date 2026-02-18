@@ -41,11 +41,13 @@ const handler = NextAuth({
                 })
 
                 return {
-                    id: (user?.id).toString(),
-                    email: user?.email,
-                    name: user?.first_name + ' ' + user.last_name,
-                    tag: user?.tag,
-                    image: user.image_url,
+                    id: user?.id.toString(),
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    tag: user.tag,
+                    created_at: user.created_at.toISOString(),
+                    image_url: user.image_url,
                 };
             }
         })
@@ -65,7 +67,7 @@ const handler = NextAuth({
 
         async session({ session, token }) {
             if (session.user) {
-                session.user.id = token.id as string;
+                session.user.id = token.id
             }
             return session;
         },
