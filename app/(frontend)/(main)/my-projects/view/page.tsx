@@ -1,10 +1,11 @@
 'use client'
 
 import { getProject } from "@/app/services/projects";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Modal from "@/app/(frontend)/components/model";
+import Modal from "@/app/(frontend)/components/modal";
+import { FaPlus, FaCheck, FaTrash } from "react-icons/fa";
 
 const ProjectView = () => {
 
@@ -15,6 +16,7 @@ const ProjectView = () => {
     });
     const [loading, setLoading] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
+    const router = useRouter()
 
     const handleModalStatus = () => {
         setModalStatus(!modalStatus);
@@ -65,6 +67,11 @@ const ProjectView = () => {
                     <>
                         <h2>{project.title}</h2>
                         <div className="tasks-list">
+                            <div className="action-buttons">
+                                <button><FaPlus /> Tarefa</button>
+                                <button onClick={() =>{router.push(`/my-projects/members?id=${id}`)}}>Membros</button>
+                                <button>Quadro</button>
+                            </div>
                             <TasksTable handleModalStatus={handleModalStatus} />
                         </div>
                     </>
@@ -125,8 +132,8 @@ const TasksTable = ({ handleModalStatus }: any) => {
 
 
                     <td>
-                        <button>F</button>
-                        <button>X</button>
+                        <button onClick={(e) => {e.stopPropagation()}}><FaCheck /></button>
+                        <button onClick={(e) => {e.stopPropagation()}}><FaTrash /></button>
                     </td>
                 </tr>
             </tbody>

@@ -12,9 +12,9 @@ Utilizadores
 Projetos
 
 -Criar projeto (feito)
--Editar projeto
+-Editar projeto 
 -Eliminar projeto (feito)
--Visão geral das tarefas e navegação pelo projeto
+-Visão geral das tarefas e navegação pelo projeto(feito)
 -Enviar convites para membros
 -Atribuir permissões a outros membros
 -visualização dos participantes do projeto

@@ -1,7 +1,7 @@
 'use client';
 import { FaTrashAlt, FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import Modal from '@/app/(frontend)/components/model';
+import Modal from '@/app/(frontend)/components/modal';
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { createProject, deleteProject } from "@/app/services/projects";
