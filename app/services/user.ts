@@ -8,9 +8,9 @@ export async function editUser(formData: FormData, id: number): Promise<Response
     return res;
 }
 
-export async function getUser(id: string):Promise<Response>{
+export async function getUser(identifier: string):Promise<Response>{
 
-    const res = await fetch(`/api/user/getUser/${id}`,{
+    const res = await fetch(`/api/user/getUser/${identifier}`,{
         method: 'GET'
     })
 

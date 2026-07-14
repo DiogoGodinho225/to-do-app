@@ -3,3 +3,12 @@ export type Project = {
     title: string,
     description: string,
 }
+
+export type Member = {
+    project_id: number,
+    user_id: number,
+    role_id: number,
+    user:{
+        id: number
+    }
+}
