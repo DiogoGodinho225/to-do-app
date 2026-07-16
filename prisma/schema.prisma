@@ -53,7 +53,7 @@ model invites {
   invitedBy_id   Int
   status         Int
   description    String?
-  accepted_at    DateTime
+  accepted_at    DateTime?
   created_at     DateTime @default(now())
   updated_at     DateTime @default(now())
 

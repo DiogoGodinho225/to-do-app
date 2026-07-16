@@ -17,7 +17,7 @@ Projetos
 -Visão geral das tarefas e navegação pelo projeto(feito)
 -Enviar convites para membros
 -Atribuir permissões a outros membros
--visualização dos participantes do projeto
+-visualização dos participantes do projeto(feito)
 -Criador do projeto pode remover participantes, atribuir permissoes, eliminar projeto
 
 Tarefas
