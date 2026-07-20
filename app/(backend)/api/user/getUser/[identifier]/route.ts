@@ -12,7 +12,22 @@ export async function GET(req: NextRequest, context: { params: any }) {
     let user;
 
     if (identifier[0] == '#') {
-        user = await prisma.users.findUnique({ where: { tag: identifier } });
+        user = await prisma.users.findUnique({
+            where: { tag: identifier }, 
+            select: {
+                   
+                    id: true,
+                    first_name: true,
+                    last_name: true,
+                    email: true,
+                    tag: true,
+                    image_url: true,
+                    status: true,
+                    last_login: true,
+                },
+        },
+
+        );
     } else {
         user = await prisma.users.findUnique({
             where: { id: Number(identifier) }

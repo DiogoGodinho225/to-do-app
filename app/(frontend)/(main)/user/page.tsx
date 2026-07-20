@@ -29,7 +29,7 @@ const UserPage = () => {
     );
 }
 
-const UserInfo = ({ user, handleForm }: any) => {
+const UserInfo = ({ user, handleForm, loading }: any) => {
 
 
     return (

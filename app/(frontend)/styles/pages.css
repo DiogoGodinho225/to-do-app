@@ -398,6 +398,12 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    transition: transform 0.3s ease-out;
+}
+
+.member-item:hover{
+    cursor: pointer;
+    transform: scale(1.04);
 }
 
 .member-item img{
@@ -437,6 +443,17 @@
     border-radius: 5px;
     cursor: pointer;
     color: white;
+}
+
+.permissions-list table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.permissions-list table td{
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
 }
 
 .invites-container table{

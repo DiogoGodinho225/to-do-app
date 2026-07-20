@@ -14,11 +14,11 @@ Projetos
 -Criar projeto (feito)
 -Editar projeto 
 -Eliminar projeto (feito)
--Visão geral das tarefas e navegação pelo projeto(feito)
--Enviar convites para membros
--Atribuir permissões a outros membros
+-Visão geral das tarefas e navegação pelo projeto
+-Enviar convites para membros(feito)
+-Atribuir permissões a outros membros(feito)
 -visualização dos participantes do projeto(feito)
--Criador do projeto pode remover participantes, atribuir permissoes, eliminar projeto
+-Criador do projeto pode remover participantes, atribuir permissoes, eliminar projeto(feito)
 
 Tarefas
 
@@ -27,12 +27,14 @@ Tarefas
 -Estados
 -prioridades e datas limite
 -comentários
--Drag and drop no Kanban
+-Drag and drop no Kanban com as devidas permissoes
 -FIltros de pesquisa
 
 Convites
 
--Visualização de convites
--Aceitar/recusar convites
+-Visualização de convites(feito)
+-Aceitar/recusar convites(feito)
+
+
 
 

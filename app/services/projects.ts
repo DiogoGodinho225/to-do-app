@@ -24,9 +24,12 @@ export async function getProjects(owner_id : string){
     return data.projects;
 }
 
-export async function deleteProject(id: string): Promise<Response>{
+export async function deleteProject(id: string, userId: number): Promise<Response>{
     const res = await fetch(`/api/projects/delete/${id}`,{
         method: 'DELETE',
+        body: JSON.stringify({
+            userId
+        })
     })
 
     return res;
@@ -59,9 +62,12 @@ export async function getMembers(project_id: number): Promise<Response>{
     return res;
 } 
 
-export async function removerMember(userId: number, projectId:number): Promise<Response>{
-    const res = await fetch(`/api/projects/${projectId}remove-member/${userId}`,{
+export async function removeMember(userId: number, projectId:number, id:number): Promise<Response>{
+    const res = await fetch(`/api/projects/${projectId}/remove-member/${userId}`,{
         method: 'DELETE',
+        body: JSON.stringify({
+            id
+        })
     })
 
     return res;

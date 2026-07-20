@@ -10,5 +10,14 @@ export type Member = {
     role_id: number,
     user:{
         id: number
+        member_permissions: [],
     }
+}
+
+export type Permission = {
+    id?: number,
+    project_id: number,
+    user_id: number,
+    permission_id: number,
+    key?: string,
 }

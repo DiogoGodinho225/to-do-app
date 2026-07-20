@@ -19,6 +19,18 @@ export async function POST(req: NextRequest){
         return NextResponse.json({message: 'Utilizador inválido!'}, {status: 400});
     }
 
+    const project = await prisma.projects.findFirst({
+        where: {id: project_id}
+    })
+
+    const permission = await prisma.member_permissions.findFirst({
+        where: {user_id: invitedBy_id, project_id: project_id, permission_id: 1}
+    })
+
+    if(project?.owner_id != invitedBy_id && !permission){
+        return NextResponse.json({message: "Não tem permissão!"}, {status: 200})
+    }
+
     await prisma.invites.create({
         data: {
             project_id: Number(project_id),
