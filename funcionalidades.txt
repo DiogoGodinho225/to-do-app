@@ -12,9 +12,9 @@ Utilizadores
 Projetos
 
 -Criar projeto (feito)
--Editar projeto 
+-Editar projeto (feito)
 -Eliminar projeto (feito)
--Visão geral das tarefas e navegação pelo projeto
+-Visão geral das tarefas e navegação pelo projeto (feito)
 -Enviar convites para membros(feito)
 -Atribuir permissões a outros membros(feito)
 -visualização dos participantes do projeto(feito)
@@ -22,11 +22,11 @@ Projetos
 
 Tarefas
 
--Criar Tarefa
+-Criar Tarefa(feito)
 -Subtarefas
--Estados
--prioridades e datas limite
--comentários
+-Estados (feito)
+-prioridades e datas limite (feito)
+-comentários(feito)
 -Drag and drop no Kanban com as devidas permissoes
 -FIltros de pesquisa
 
@@ -34,6 +34,11 @@ Convites
 
 -Visualização de convites(feito)
 -Aceitar/recusar convites(feito)
+
+
+
+-responsividade para dispositivos moveis
+
 
 
 

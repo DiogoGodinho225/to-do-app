@@ -146,7 +146,7 @@ nav:hover .label {
 
 .modal h2{
     width: 100%;
-    text-align: center;
+    text-align: center !important;
     border-bottom: 1px solid var(--border);
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -170,7 +170,7 @@ nav:hover .label {
     font-size: 12px;
 }
 
-.modal input, .modal textarea{
+.modal input, .modal textarea, .modal select{
     outline: none;
     color: var(--principal-text);
     outline: none;

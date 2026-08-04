@@ -28,7 +28,7 @@ export async function POST(req: NextRequest){
     })
 
     if(project?.owner_id != invitedBy_id && !permission){
-        return NextResponse.json({message: "Não tem permissão!"}, {status: 200})
+        return NextResponse.json({message: "Não tem permissão!"}, {status: 400})
     }
 
     await prisma.invites.create({
