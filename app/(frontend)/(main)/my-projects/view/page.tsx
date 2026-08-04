@@ -8,6 +8,7 @@ import Modal from "@/app/(frontend)/components/modal";
 import { FaPlus, FaCheck, FaTrash, FaPencilAlt, FaEye } from "react-icons/fa";
 import { Member, Task, Project, Subtask } from '@/app/types/next-project'
 import { useUser } from "@/app/context/UserContext";
+import Filters from "@/app/(frontend)/components/filters";
 
 interface TasksListProps {
     tasks: Task[],
@@ -58,6 +59,7 @@ const ProjectView = () => {
     const [showDetails, setShowDetails] = useState(false)
     const { user } = useUser()
     const [task, setTask] = useState<Task | null>({})
+    const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
     const handleSubtasksModalStatus = (task?: Task | null) => {
 
@@ -82,7 +84,7 @@ const ProjectView = () => {
 
                 if (result.ok) {
                     setProject(data.project);
-
+                    setFilteredTasks(data.project.tasks);
                 } else {
                     toast.error(data.message || 'Erro ao carregar projeto!')
                 }
@@ -174,6 +176,7 @@ const ProjectView = () => {
 
                                 </div> : null
                         }
+                        <Filters tasks={project.tasks || []} members={project.project_members || []} setFilteredTasks={setFilteredTasks}/>
 
                         <div className="tasks-list">
                             <div className="action-buttons">
@@ -181,7 +184,7 @@ const ProjectView = () => {
                                 <button onClick={() => { router.push(`/my-projects/members?id=${id}`) }}>Membros</button>
                                 <button>Quadro</button>
                             </div>
-                            <TasksTable handleModalStatus={(task) => handleSubtasksModalStatus(task)} tasks={project?.tasks || []} members={project?.project_members || []} fetchProject={fetchProject} />
+                            <TasksTable handleModalStatus={(task) => handleSubtasksModalStatus(task)} tasks={filteredTasks || []} members={project?.project_members || []} fetchProject={fetchProject} />
                         </div>
                     </>
             }

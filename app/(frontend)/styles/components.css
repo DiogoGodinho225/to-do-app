@@ -213,4 +213,56 @@ nav:hover .label {
     font-size: 10px;
 }
 
+.filters {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.filters form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+}
+
+.filter-group{
+    display: flex;
+    flex-direction:column;
+    gap: 5px;
+    width: 100%;
+}
+
+.filter-group label{
+    font-size: 14px;
+    color: var(--secondary-text);
+}
+
+.search-input-wrapper{
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrapper input{
+    width: 100%;
+}
+
+.search-icon{
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.filters select, .filters input{
+    padding: 4px 8px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid var(--border);
+    color: var(--principal-text);
+}
+
+
+
+
 
