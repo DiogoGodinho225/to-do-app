@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { createProject, deleteProject } from "@/app/services/projects";
 import { useRouter } from "next/navigation";
 import { useProjects } from "@/app/context/ProjectsContext";
+import { Project } from "@/app/types/next-project";
 
 const MyProjectsPage = () => {
 
@@ -41,7 +42,7 @@ const MyProjectsPage = () => {
                         <div className="projects-list">
                             {
                                 projects.map((project, index) => (
-                                    <ProjectCard key={index} project={project} />
+                                    <ProjectCard key={index} project={project} userId={session?.user.id} />
                                 ))
                             }
                         </div>
@@ -55,19 +56,24 @@ const MyProjectsPage = () => {
 }
 
 
-const ProjectCard = ({ project }: any) => {
+const ProjectCard = ({ project, userId }: any) => {
 
-    const {fetchProjects} = useProjects();
+    const { fetchProjects } = useProjects();
     const router = useRouter();
 
     const handleDeleteProject = async () => {
 
-        const confirmDelete = window.confirm("Tens a certeza que queres eliminar este projeto?");
+        const message = userId == project.owner_id
+            ? 'Pretende eliminar este projeto definitivamente para todos?'
+            : 'Pretende sair do projeto?';
+
+        
+        const confirmDelete = window.confirm(message);
 
         if (!confirmDelete) return;
 
         try {
-            const result = await deleteProject(project.id);
+            const result = await deleteProject(project.id, userId);
             const body = await result.json();
 
             if (result.ok) {
@@ -114,14 +120,14 @@ const CreateForm = ({ owner_id, handleModalStatus }: { owner_id: number, handleM
             if (result.ok) {
                 toast.success(body.message);
                 handleModalStatus();
-                router.push('/projects/view');
+                router.push(`/my-projects/view?id=${body.id}`);
             } else {
                 toast.error(body.message);
             }
 
 
         } catch (error) {
-            toast.error('Erro  criar projeto!')
+            toast.error('Erro criar projeto!')
             console.error(error);
         } finally {
             setLoading(false);

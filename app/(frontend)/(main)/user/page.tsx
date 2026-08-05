@@ -13,12 +13,11 @@ const UserPage = () => {
         setFormIsOpen(!formIsOpen);
     }
 
-    const { data: session, status } = useSession();
     const {user, fetchUser, loading} = useUser();
 
     return (
         <div className="user-container">
-            {loading ? (
+            {loading || !user? (
                 <p className="alert">A carregar...</p>
             ) : formIsOpen ? (
                 <UserForm user={user} fetchUser={fetchUser} handleForm={handleForm} />

@@ -10,8 +10,10 @@ export async function POST(req: NextRequest) {
     }
 
     if (title.lenght > 60) {
-        NextResponse.json({ message: 'Título excede o tamanho!' }, { status: 400 });
+        return NextResponse.json({ message: 'Título excede o tamanho!' }, { status: 400 });
     }
+
+    var id = null;
 
     await prisma.$transaction(async (prisma) => {
         const project = await prisma.projects.create({
@@ -21,9 +23,11 @@ export async function POST(req: NextRequest) {
         await prisma.project_members.create({
             data: { project_id: project.id, user_id: owner_id, role_id: 1, joined_at: new Date()}
         });
+
+        id = project.id
+
     });
 
-
-    return NextResponse.json({ message: 'Novo projeto criado!' }, { status: 200 });
+    return NextResponse.json({ message: 'Novo projeto criado!', id: id }, { status: 200 });
 
 }

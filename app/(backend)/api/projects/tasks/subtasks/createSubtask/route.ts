@@ -1,0 +1,47 @@
+import { NextResponse, NextRequest } from "next/server";
+import { prisma } from "@/app/lib/prisma"
+
+export async function POST(req: NextResponse) {
+
+    const res = await req.json();
+    const data = res.data;
+
+    if (!data) {
+        return NextResponse.json({ message: 'Dados não fornecidos!' }, { status: 400 });
+    }
+
+    const task = await prisma.tasks.findFirst({
+        where: { id: res.taskId }
+    })
+
+    if(!task){
+        return NextResponse.json({ message: "Tarefa não encontrada!" }, { status: 404 })
+    }
+
+    const project = await prisma.projects.findFirst({
+        where:{id: task.project_id}
+    })
+
+    if(!project){
+        return NextResponse.json({ message: "Projeto não encontrado!" }, { status: 404 })
+    }
+
+    const permission = await prisma.member_permissions.findFirst({
+        where: { user_id: res.userId, project_id: project.id, permission_id: 4 }
+    })
+
+    if (project?.owner_id != res.userId && !permission) {
+        return NextResponse.json({ message: "Não tem permissão!" }, { status: 400 })
+    }
+
+    await prisma.subtasks.create({
+        data:{
+            title: data.title,
+            description: data.description,
+            status: Number(data.status),
+            task_id: Number(res.taskId),
+        }
+    });
+
+    return NextResponse.json({ message: 'Subtarefa criada!' }, { status: 200 })
+}

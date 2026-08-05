@@ -33,12 +33,13 @@ const handler = NextAuth({
                     return null;
                 }
 
-                prisma.users.update({
+                await prisma.users.update({
                     where: { id: user.id },
                     data: {
                         status: 1,
                     }
                 })
+
 
                 return {
                     id: user?.id.toString(),
