@@ -6,7 +6,6 @@ export async function middleware(req: NextRequest) {
 
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-
     if (!token) {
         if (req.nextUrl.pathname.startsWith('/api')) {
             return NextResponse.json({ error: 'Não autenticado!' }, { status: 401 });
