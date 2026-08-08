@@ -182,11 +182,7 @@ const ProjectView = () => {
                             <div className="action-buttons">
                                 <button onClick={handleTaskModalStatus}><FaPlus /> Tarefa</button>
                                 <button onClick={() => { router.push(`/my-projects/members?id=${id}`) }}>Membros</button>
-<<<<<<< HEAD
                                 <button onClick={() => {router.push(`/my-projects/view/board?project=${id}`)}}>Quadro</button>
-=======
-                                <button>Quadro</button>
->>>>>>> 930928808511e5add5ca2665d27cef8699c6964c
                             </div>
                             <TasksTable handleModalStatus={(task) => handleSubtasksModalStatus(task)} tasks={filteredTasks || []} members={project?.project_members || []} fetchProject={fetchProject} />
                         </div>
