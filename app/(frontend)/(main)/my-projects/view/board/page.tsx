@@ -12,7 +12,6 @@ import ReturnButton from "@/app/(frontend)/components/returnButton"
 interface ColumnProps {
     title: string,
     tasks: Task[],
-    id: number,
     fetchProject: () => Promise<void>
 }
 
@@ -69,7 +68,7 @@ const Board = () => {
             <h2>{project?.title}</h2>
 
             <Filters tasks={project.tasks || []} members={project.project_members || []} setFilteredTasks={setFilteredTasks} />
-            <TasksBoard tasks={filteredTasks || []} fetchProject={fetchProject}/>
+            <TasksBoard tasks={filteredTasks || []} fetchProject={fetchProject} />
             <ReturnButton />
 
         </div>
@@ -79,16 +78,17 @@ const Board = () => {
 const TasksBoard = ({ tasks, fetchProject }: TasksBoardProps) => {
     return (
         <div className="board">
-            <Column id={1} title="Por Fazer" tasks={tasks.filter(t => t.status_id == 1)} fetchProject={fetchProject}/>
-            <Column id={2} title="Em Andamento" tasks={tasks.filter(t => t.status_id == 2)} fetchProject={fetchProject}/>
-            <Column id={3} title="Concluído" tasks={tasks.filter(t => t.status_id == 3)} fetchProject={fetchProject}/>
+            <Column title="Por Fazer" tasks={tasks.filter(t => t.status_id == 1)} fetchProject={fetchProject} />
+            <Column title="Em Andamento" tasks={tasks.filter(t => t.status_id == 2)} fetchProject={fetchProject} />
+            <Column title="Concluído" tasks={tasks.filter(t => t.status_id == 3)} fetchProject={fetchProject} />
         </div>
     )
 }
 
-const Column = ({ id, title, tasks, fetchProject }: ColumnProps) => {
+const Column = ({ title, tasks, fetchProject }: ColumnProps) => {
 
-    const {user} = useUser()
+    const { user } = useUser()
+    const [activeTask, setActiveTask] = useState<number | null>()
 
     const handleTaskStatus = async (task: Task, status_id: number) => {
         const data = { status_id: status_id }
@@ -109,6 +109,15 @@ const Column = ({ id, title, tasks, fetchProject }: ColumnProps) => {
         }
     }
 
+    const handleActiveTask = (taskId: number) => {
+        if (activeTask == taskId) {
+            setActiveTask(null)
+            return
+        }
+
+        setActiveTask(taskId)
+    }
+
     return (
         <div className="column">
             <div className="status-title">
@@ -117,14 +126,24 @@ const Column = ({ id, title, tasks, fetchProject }: ColumnProps) => {
             <div className="tasks">
                 {
                     tasks.map((task, i) => (
-                        <div className="task" key={i}>
+                        <div onClick={() => task.id && handleActiveTask(task.id)} key={i} className={`task ${activeTask == task.id ? 'active' : ''}`}>
+                            <div className="task-actions">
+                                <button onClick={() => task.status_id && handleTaskStatus(task, task?.status_id - 1)} disabled={task.status_id == 1}><FaArrowLeft /></button>
 
-                            <button onClick={() => task.status_id && handleTaskStatus(task, task?.status_id - 1)} disabled={task.status_id == 1}><FaArrowLeft /></button>
+                                <p>{task.title}</p>
 
-                            <p>{task.title}</p>
+                                <button onClick={() => task.status_id && handleTaskStatus(task, task?.status_id + 1)} disabled={task.status_id == 3}><FaArrowRight /></button>
+                            </div>
 
-                            <button onClick={() => task.status_id && handleTaskStatus(task, task?.status_id + 1)} disabled={task.status_id == 3}><FaArrowRight /></button>
-
+                            <div className="task-details">
+                                <p><span>Atribuída:</span>{task.user?.first_name + " " + task.user?.last_name}</p>
+                                <p><span>Prioridade:</span>{task.priority?.status}</p>
+                                <p><span>Data limite:</span>{task?.dueDate
+                                    ? new Date(task.dueDate).toLocaleDateString('pt-PT')
+                                    : '-------'}</p>
+                                <p><span>Descrição:</span></p>
+                                <textarea readOnly value={task.description}></textarea>
+                            </div>
                         </div>
                     ))
                 }
@@ -133,10 +152,11 @@ const Column = ({ id, title, tasks, fetchProject }: ColumnProps) => {
     )
 }
 
+
 export default function BoardPage() {
-  return (
-    <Suspense fallback={<p className="alert">A carregar...</p>}>
-      <Board />
-    </Suspense>
-  );
+    return (
+        <Suspense fallback={<p className="alert">A carregar...</p>}>
+            <Board />
+        </Suspense>
+    );
 }

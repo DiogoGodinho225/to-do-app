@@ -9,7 +9,9 @@ export async function getPermissions(): Promise<Response> {
 }
 
 export async function givePermissions(memberPermissions: Permission[], userId: number, projectId: number, id:number): Promise<Response> {
-    const res = await fetch(`/api/projects/give-permissions`, {
+
+    console.log(memberPermissions)
+    const res = await fetch(`/api/projects/members/give-permissions`, {
         method: 'POST',
         body: JSON.stringify({
             memberPermissions,
