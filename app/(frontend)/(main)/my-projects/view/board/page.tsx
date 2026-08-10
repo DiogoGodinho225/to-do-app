@@ -1,7 +1,7 @@
 'use client';
 import { Project, Task } from "@/app/types/next-project"
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { getProject, editTask } from "@/app/services/projects";
 import toast from "react-hot-toast";
 import Filters from "@/app/(frontend)/components/filters";
@@ -21,7 +21,7 @@ interface TasksBoardProps {
     fetchProject: () => Promise<void>;
 }
 
-const board = () => {
+const Board = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get('project');
     const [project, setProject] = useState<Project>({
@@ -133,4 +133,10 @@ const Column = ({ id, title, tasks, fetchProject }: ColumnProps) => {
     )
 }
 
-export default board
+export default function BoardPage() {
+  return (
+    <Suspense fallback={<p className="alert">A carregar...</p>}>
+      <Board />
+    </Suspense>
+  );
+}

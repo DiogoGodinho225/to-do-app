@@ -10,6 +10,7 @@ import { useProjects } from "@/app/context/ProjectsContext";
 import { Project } from "@/app/types/next-project";
 import ReturnButton from "@/app/(frontend)/components/returnButton"
 
+
 const MyProjectsPage = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,9 +50,10 @@ const MyProjectsPage = () => {
                         </div>
                         : <p className="alert">Sem Projetos criados!</p>
                 }
-                
+
                 <ReturnButton />
             </div>
+
         </>
     );
 
@@ -69,7 +71,7 @@ const ProjectCard = ({ project, userId }: any) => {
             ? 'Pretende eliminar este projeto definitivamente para todos?'
             : 'Pretende sair do projeto?';
 
-        
+
         const confirmDelete = window.confirm(message);
 
         if (!confirmDelete) return;

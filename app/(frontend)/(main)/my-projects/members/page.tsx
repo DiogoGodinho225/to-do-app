@@ -1,6 +1,6 @@
 'use client'
 import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { getMembers, inviteMember, removeMember } from "@/app/services/projects"
 import { getPermissions, givePermissions } from "@/app/services/permissions"
 import toast from "react-hot-toast"
@@ -22,6 +22,8 @@ interface PermissionsList {
     projectId: number,
     disabled: boolean,
 }
+
+export const dynamic = 'force-dynamic';
 
 const ProjectMembers = () => {
 
@@ -79,7 +81,7 @@ const ProjectMembers = () => {
                 <h2>Membros</h2>
                 <button className="btn-invite" onClick={handleModalStatus}>Convidar Membros</button>
                 {
-                    loading ? <p className="alert">A carregar...</p>
+                    loading || !id ? <p className="alert">A carregar...</p>
                         : members.length === 0 ?
                             <p className="alert">Sem membros</p>
                             :
@@ -347,5 +349,10 @@ const PermissionsList = ({ memberPermissions, setMemberPermissions, userId, proj
 }
 
 
-
-export default ProjectMembers;
+export default function ProjectMembersPage() {
+  return (
+    <Suspense fallback={<p className="alert">A carregar...</p>}>
+      <ProjectMembers />
+    </Suspense>
+  );
+}

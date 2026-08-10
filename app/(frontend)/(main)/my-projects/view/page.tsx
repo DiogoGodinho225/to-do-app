@@ -2,7 +2,7 @@
 
 import { getProject, editTask, removeTask, createTask, editProject, removeSubtask, editSubtask, createSubtask } from "@/app/services/projects";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState,Suspense } from "react";
 import toast from "react-hot-toast";
 import Modal from "@/app/(frontend)/components/modal";
 import { FaPlus, FaCheck, FaTrash, FaPencilAlt, FaEye } from "react-icons/fa";
@@ -602,4 +602,10 @@ const SubtaskForm = ({ subtask, setForm, taskId, fetchProject, handleModal}: Sub
     )
 }
 
-export default ProjectView;
+export default function ProjectViewPage() {
+  return (
+    <Suspense fallback={<p className="alert">A carregar...</p>}>
+      <ProjectView />
+    </Suspense>
+  );
+}
