@@ -264,7 +264,6 @@ nav:hover .label {
 
 .return-button{
     padding: 5px 8px;
-    bottom: 10px;
     background-color: var(--color-primary);
     border: none;
     color: white;
@@ -273,6 +272,8 @@ nav:hover .label {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.2s ease-in-out;
+    margin-top: auto;
+    
 }
 
 .return-button:hover{

@@ -112,11 +112,7 @@
 .board-container {
     padding: 20px;
     width: 100%;
-    
-}
-
-.board-container{
-    display: flex; 
+    display: flex;
     flex-direction: column;
     height: 100vh;
 }
@@ -200,6 +196,7 @@
     font-size: 14px;
     cursor: pointer;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    width: 10%;
 }
 
 .projects-container .add-button:hover {
@@ -429,6 +426,7 @@
     background-color: var(--success-color);
     cursor: pointer;
     color: white;
+    width: 12%;
 }
 
 .members-container button:hover {
