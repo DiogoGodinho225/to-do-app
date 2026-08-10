@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useUser } from "@/app/context/UserContext";
 import { Invite } from "@/app/types/next-invites";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import ReturnButton from "@/app/(frontend)/components/returnButton"
 
 interface InvitesListProps {
     invites: Invite[];
@@ -57,7 +58,7 @@ const InvitesPage = () => {
 
                     : <p className="alert">Sem convites de momento!</p>
             }
-
+            <ReturnButton />
         </div>
     )
 

@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Filters from "@/app/(frontend)/components/filters";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useUser } from "@/app/context/UserContext";
+import ReturnButton from "@/app/(frontend)/components/returnButton"
 
 interface ColumnProps {
     title: string,
@@ -69,6 +70,7 @@ const board = () => {
 
             <Filters tasks={project.tasks || []} members={project.project_members || []} setFilteredTasks={setFilteredTasks} />
             <TasksBoard tasks={filteredTasks || []} fetchProject={fetchProject}/>
+            <ReturnButton />
 
         </div>
     )

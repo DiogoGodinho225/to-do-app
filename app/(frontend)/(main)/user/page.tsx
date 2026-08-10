@@ -4,6 +4,7 @@ import { editUser } from "@/app/services/user";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import ReturnButton from "@/app/(frontend)/components/returnButton"
 
 const UserPage = () => {
 
@@ -24,6 +25,7 @@ const UserPage = () => {
             ) : (
                 <UserInfo user={user} handleForm={handleForm} />
             )}
+            <ReturnButton />
         </div>
     );
 }

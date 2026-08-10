@@ -23,11 +23,11 @@ Projetos
 Tarefas
 
 -Criar Tarefa(feito)
--Subtarefas
+-Subtarefas(feito)
 -Estados (feito)
 -prioridades e datas limite (feito)
 -comentários(feito)
--Drag and drop no Kanban com as devidas permissoes
+-Drag and drop no Kanban com as devidas permissoes(feito)
 -FIltros de pesquisa
 
 Convites
@@ -35,9 +35,6 @@ Convites
 -Visualização de convites(feito)
 -Aceitar/recusar convites(feito)
 
-
-
--responsividade para dispositivos moveis
 
 
 

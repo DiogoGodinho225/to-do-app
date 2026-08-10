@@ -7,6 +7,7 @@ import toast from "react-hot-toast"
 import { Member, Permission } from "@/app/types/next-project"
 import Modal from "@/app/(frontend)/components/modal"
 import { useUser } from "@/app/context/UserContext"
+import ReturnButton from "@/app/(frontend)/components/returnButton"
 
 interface MembersListProps {
     members: Member[];
@@ -84,7 +85,7 @@ const ProjectMembers = () => {
                             :
                             <MembersList members={members} id={user?.id || ''} fetchMembers={fetchMembers}/>
                 }
-
+                <ReturnButton />
             </div>
         </>
     )

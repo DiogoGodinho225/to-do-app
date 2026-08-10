@@ -2,6 +2,7 @@
 import { Toaster } from 'react-hot-toast';
 import { SessionProvider } from 'next-auth/react';
 import Navbar from '../components/navbar';
+import ReturnButton from '../components/returnButton';
 import { ProjectsProvider } from '@/app/context/ProjectsContext';
 import { UserProvider } from '@/app/context/UserContext';
 

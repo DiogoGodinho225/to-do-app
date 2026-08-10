@@ -9,6 +9,7 @@ import { FaPlus, FaCheck, FaTrash, FaPencilAlt, FaEye } from "react-icons/fa";
 import { Member, Task, Project, Subtask } from '@/app/types/next-project'
 import { useUser } from "@/app/context/UserContext";
 import Filters from "@/app/(frontend)/components/filters";
+import ReturnButton from "@/app/(frontend)/components/returnButton"
 
 interface TasksListProps {
     tasks: Task[],
@@ -188,6 +189,7 @@ const ProjectView = () => {
                         </div>
                     </>
             }
+            <ReturnButton />
         </div >
     )
 }

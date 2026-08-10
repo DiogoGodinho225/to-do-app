@@ -8,6 +8,7 @@ import { createProject, deleteProject } from "@/app/services/projects";
 import { useRouter } from "next/navigation";
 import { useProjects } from "@/app/context/ProjectsContext";
 import { Project } from "@/app/types/next-project";
+import ReturnButton from "@/app/(frontend)/components/returnButton"
 
 const MyProjectsPage = () => {
 
@@ -48,7 +49,8 @@ const MyProjectsPage = () => {
                         </div>
                         : <p className="alert">Sem Projetos criados!</p>
                 }
-
+                
+                <ReturnButton />
             </div>
         </>
     );
