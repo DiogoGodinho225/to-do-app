@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 To-Do App
 
-## Getting Started
+A simple and modern To-Do application built with **Next.js** and **TypeScript**.
 
-First, run the development server:
+The project uses **Next.js API Routes** to handle the backend and task management operations.
+
+## 🚀 Features
+
+* User Authentication
+* Create Projects
+* Invite Members
+* Remove members
+* Members Permissions
+* Create tasks
+* Edit tasks
+* Delete tasks
+* Mark tasks as completed
+* List all tasks
+* REST API with Next.js API Routes
+* TypeScript
+
+## 🛠️ Tech Stack
+
+* **Next.js**
+* **React**
+* **TypeScript**
+* **Next.js API Routes**
+* **CSS**
+
+## 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/DiogoGodinho225/to-do-app.git
+```
+
+Navigate to the project folder:
+
+```bash
+cd to-do-app
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔌 API Routes
 
-## Learn More
+The application uses Next.js API Routes to manage tasks.
 
-To learn more about Next.js, take a look at the following resources:
+| Method | Endpoint                         | Description           |
+| ------ | ---------------------------------| --------------------- |
+| GET    | `/api/projects/getProjects/[id]` | Get all user projects |
+| POST   | `/api/projects/create`           | Create a project      |
+| PUT    | `/api/project/editProject/[id]`  | Update a project      |
+| DELETE | `/api/projects/delete/[id]`      | Delete a project      |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Purpose
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project was created to practice and improve my skills in:
 
-## Deploy on Vercel
+* Next.js
+* TypeScript
+* React
+* REST APIs
+* CRUD operations
+* API Routes
+* Full-stack web development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Diogo Godinho**
+
+Developed as a personal project to practice and demonstrate skills in Next.js, TypeScript and full-stack web development.
